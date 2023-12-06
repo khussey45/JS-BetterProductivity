@@ -1,5 +1,6 @@
 {{!< main}}
 
+<div class="text-center">
 <h2>Edit Event</h2>
 <form action="/calendar/edit/{{event._id}}" method="POST">
   <input type="text" name="title" value="{{event.title}}" required>
@@ -8,3 +9,4 @@
   <input type="time" name="time" value="{{event.time}}">
   <button type="submit">Update Event</button>
 </form>
+</div>

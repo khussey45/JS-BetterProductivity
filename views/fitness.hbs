@@ -1,9 +1,11 @@
 {{!< main}}
+<div class="text-center">
 <style>
   a {
     color: black; /* Change text color to black */
   }
 </style>
+
 <h2>Fitness Tracker</h2>
 <form action="/fitness/add" method="POST">
   <input type="text" name="name" placeholder="Exercise Name" required>
@@ -21,6 +23,7 @@
     </form>
   </li>
 {{/each}}
-<a href="/fitness/edit/test">Edit Test</a>
+
 
 </ul>
+</div>
