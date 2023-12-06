@@ -1,0 +1,23 @@
+{{!< main}}
+
+<form action="/diet/add" method="POST">
+  <input type="text" name="name" placeholder="Food Name">
+  <input type="number" name="carbs" placeholder="Carbs">
+  <input type="number" name="protein" placeholder="Protein">
+  <input type="number" name="calories" placeholder="Calories">
+  <button type="submit">Add Food Item</button>
+</form>
+
+<ul>
+  {{#each foodItems}}
+  <li>
+    {{this.name}} - Carbs: {{this.carbs}}g, Protein: {{this.protein}}g, Calories: {{this.calories}}
+    <!-- Edit button -->
+    <a href="/diet/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+    <!-- Delete button -->
+    <form action="/diet/delete/{{this._id}}" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>

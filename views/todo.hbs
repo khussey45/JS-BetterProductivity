@@ -1,0 +1,19 @@
+<form action="/todo/add" method="POST">
+  <input type="text" name="content" placeholder="Add new to-do">
+  <button type="submit">Add</button>
+</form>
+
+<ul class="todo-list">
+  {{#each todos}}
+  <li class="todo-item">
+    {{this.content}}
+    <!-- Edit button -->
+    <a href="/todo/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+    <!-- Delete button -->
+    <form action="/todo/delete/{{this._id}}" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>
+

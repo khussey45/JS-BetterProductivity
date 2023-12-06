@@ -1,0 +1,29 @@
+{{!< main}}
+
+<!-- Pomodoro Timer Content -->
+ <div class="settings">
+        <label>
+            Work:
+            <input type="number" id="workTimeMinutes" value="25" min="0"> min
+            <input type="number" id="workTimeSeconds" value="0" min="0" max="59"> sec
+        </label>
+        <label>
+            Break:
+            <input type="number" id="breakTimeMinutes" value="5" min="0"> min
+            <input type="number" id="breakTimeSeconds" value="0" min="0" max="59"> sec
+        </label>
+    </div>
+
+    <div class="container">
+      
+        <h2 id="mode">Work</h2>
+        <p id="timer">25:00</p>
+        <div class="buttons">
+            <button onclick="startPomodoro()">Start</button>
+            <button onclick="stopPomodoro()">Stop</button>
+            <button onclick="resetPomodoro()">Reset</button>
+        </div>
+    </div>
+
+<!-- Link to your JavaScript file -->
+<script src="/js/pomodoro.js"></script>

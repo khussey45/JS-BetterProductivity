@@ -1,0 +1,27 @@
+{{!< main}}
+
+<style>
+  a {
+    color:black;
+  }
+</style>
+<h2>Calendar</h2>
+<form action="/calendar/add" method="POST">
+  <input type="text" name="title" placeholder="Event Title" required>
+  <textarea name="description" placeholder="Description"></textarea>
+  <input type="date" name="startDate" required>
+  <input type="time" name="time" required>
+  <button type="submit">Add Event</button>
+</form>
+
+<ul>
+  {{#each events}}
+  <li>
+    {{this.title}} - {{this.startDate}} at {{this.time}}
+    <a href="/calendar/edit/{{this._id}}">Edit</a>
+    <form action="/calendar/delete/{{this._id}}" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+  {{/each}}
+</ul>

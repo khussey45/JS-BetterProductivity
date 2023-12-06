@@ -1,0 +1,26 @@
+{{!< main}}
+<style>
+  a {
+    color: black; /* Change text color to black */
+  }
+</style>
+<h2>Fitness Tracker</h2>
+<form action="/fitness/add" method="POST">
+  <input type="text" name="name" placeholder="Exercise Name" required>
+  <input type="number" name="duration" placeholder="Duration (minutes)" required>
+  <button type="submit">Add Exercise</button>
+</form>
+
+<ul>
+{{#each exercises}}
+  <li>
+    {{this.name}} - {{this.duration}} minutes
+    <a href="/fitness/edit/{{this._id}}">Edit</a>
+    <form action="/fitness/delete/{{this._id}}" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+{{/each}}
+<a href="/fitness/edit/test">Edit Test</a>
+
+</ul>

@@ -1,0 +1,37 @@
+{{!< main}}
+
+<style>
+  a{
+    color:black;
+  }
+</style>
+
+<h2>Sleep Tracker</h2>
+<form action="/sleep/add" method="POST">
+  <label for="quality">Sleep Quality:</label>
+  <select name="quality" id="quality">
+    <option value="great">Great</option>
+    <option value="okay">Okay</option>
+    <option value="bad">Bad</option>
+  </select>
+  
+  <label for="duration">Duration (hours):</label>
+  <input type="number" name="duration" id="duration" required>
+
+  <label for="date">Date:</label>
+  <input type="date" name="date" id="date" required>
+
+  <button type="submit">Add Entry</button>
+</form>
+
+<ul>
+  {{#each sleepEntries}}
+    <li>
+      {{this.date}} - {{this.quality}} - {{this.duration}} hours
+      <a href="/sleep/edit/{{this._id}}">Edit</a>
+      <form action="/sleep/delete/{{this._id}}" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  {{/each}}
+</ul>

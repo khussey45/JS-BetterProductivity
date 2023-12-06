@@ -1,0 +1,23 @@
+{{!< main}}
+
+<h2>Edit Sleep Entry</h2>
+<form action="/sleep/edit/{{sleepEntry._id}}" method="POST">
+  <div class="form-group">
+    <label for="quality">Sleep Quality:</label>
+    <select name="quality" id="quality">
+  <option value="great" {{#if (eq sleepEntry.quality 'great')}}selected{{/if}}>Great</option>
+  <option value="okay" {{#if (eq sleepEntry.quality 'okay')}}selected{{/if}}>Okay</option>
+  <option value="bad" {{#if (eq sleepEntry.quality 'bad')}}selected{{/if}}>Bad</option>
+</select>
+
+  </div>
+  <div class="form-group">
+    <label for="duration">Duration (hours):</label>
+    <input type="number" id="duration" name="duration" value="{{this.duration}}" required>
+  </div>
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" value="{{formatDate this.date}}" required>
+  </div>
+  <button type="submit">Update</button>
+</form>

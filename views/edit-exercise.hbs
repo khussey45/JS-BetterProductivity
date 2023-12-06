@@ -1,0 +1,14 @@
+{{!< main}}
+
+<h2>Edit Exercise</h2>
+<form action="/fitness/edit/{{exercise._id}}" method="POST">
+  <div class="form-group">
+    <label for="name">Exercise Name:</label>
+    <input type="text" id="name" name="name" value="{{exercise.name}}" required>
+  </div>
+  <div class="form-group">
+    <label for="duration">Duration (minutes):</label>
+    <input type="number" id="duration" name="duration" value="{{exercise.duration}}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

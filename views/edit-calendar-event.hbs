@@ -1,0 +1,10 @@
+{{!< main}}
+
+<h2>Edit Event</h2>
+<form action="/calendar/edit/{{event._id}}" method="POST">
+  <input type="text" name="title" value="{{event.title}}" required>
+  <textarea name="description">{{event.description}}</textarea>
+  <input type="date" name="startDate" value="{{formatDate event.startDate}}">
+  <input type="time" name="time" value="{{event.time}}">
+  <button type="submit">Update Event</button>
+</form>

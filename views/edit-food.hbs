@@ -1,0 +1,22 @@
+{{!< main}}
+
+<h2>Edit Food Item</h2>
+<form action="/diet/edit/{{foodItem._id}}" method="POST">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{foodItem.name}}" required>
+  </div>
+  <div class="form-group">
+    <label for="carbs">Carbs (g):</label>
+    <input type="number" id="carbs" name="carbs" value="{{foodItem.carbs}}" required>
+  </div>
+  <div class="form-group">
+    <label for="protein">Protein (g):</label>
+    <input type="number" id="protein" name="protein" value="{{foodItem.protein}}" required>
+  </div>
+  <div class="form-group">
+    <label for="calories">Calories:</label>
+    <input type="number" id="calories" name="calories" value="{{foodItem.calories}}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+</form>

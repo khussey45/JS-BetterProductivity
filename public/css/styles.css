@@ -1,0 +1,85 @@
+.nav-link{
+  color: white;
+}
+/* .navbar-toggler{
+  background-color: white;
+} */
+.success-message {
+  background-color: lightgreen;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.alert-message {
+  background-color: #f44336; 
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+.todo-list {
+  list-style-type: none; 
+  padding: 0; 
+}
+
+.todo-item {
+  color: black; 
+  padding: 10px; 
+  border-bottom: 1px solid #ddd; 
+  font-size: 18px; 
+}
+
+.todo-item:last-child {
+  border-bottom: none; 
+}
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content-area {
+  flex: 1;
+  display: flex;
+}
+.vertical-navbar {
+  min-height: 100vh;
+}
+footer {
+  padding: 20px 0;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* .content {
+  min-height: calc(100vh - 10px);
+} */
+
+
+ .vertical-navbar {
+  background-color: #343a40; 
+  max-width: 200px; 
+  height: 100vh; 
+}
+
+
+
+/* Custom CSS to position Home link below app title for larger screens */
+@media (min-width: 992px) {
+  .vertical-navbar .navbar-nav .nav-item {
+    display: block;
+    margin-top: 5px; 
+  }
+}
