@@ -6,7 +6,7 @@
   }
 </style>
 
-<h2>Sleep Tracker</h2>
+<h1>Sleep Tracker</h1>
 <form action="/sleep/add" method="POST">
   <label for="quality">Sleep Quality:</label>
   <select name="quality" id="quality">
@@ -28,9 +28,9 @@
   {{#each sleepEntries}}
     <li>
       {{this.date}} - {{this.quality}} - {{this.duration}} hours
-      <a href="/sleep/edit/{{this._id}}">Edit</a>
+      <a href="/sleep/edit/{{this._id}}"class="btn btn-primary">Edit</a>
       <form action="/sleep/delete/{{this._id}}" method="POST">
-        <button type="submit">Delete</button>
+        <button type="submit"class="btn btn-danger">Delete</button>
       </form>
     </li>
   {{/each}}

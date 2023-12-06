@@ -5,7 +5,7 @@
     color:black;
   }
 </style>
-<h2>Calendar</h2>
+<h1>Calendar</h1>
 <form action="/calendar/add" method="POST">
   <input type="text" name="title" placeholder="Event Title" required>
   <textarea name="description" placeholder="Description"></textarea>
@@ -18,9 +18,9 @@
   {{#each events}}
   <li>
     {{this.title}} - {{this.startDate}} at {{this.time}}
-    <a href="/calendar/edit/{{this._id}}">Edit</a>
+    <a href="/calendar/edit/{{this._id}}"class="btn btn-primary">Edit</a>
     <form action="/calendar/delete/{{this._id}}" method="POST">
-      <button type="submit">Delete</button>
+      <button type="submit"class="btn btn-danger">Delete</button>
     </form>
   </li>
   {{/each}}

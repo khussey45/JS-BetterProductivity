@@ -6,7 +6,7 @@
   }
 </style>
 
-<h2>Fitness Tracker</h2>
+<h1>Fitness Tracker</h1>
 <form action="/fitness/add" method="POST">
   <input type="text" name="name" placeholder="Exercise Name" required>
   <input type="number" name="duration" placeholder="Duration (minutes)" required>
@@ -17,9 +17,9 @@
 {{#each exercises}}
   <li>
     {{this.name}} - {{this.duration}} minutes
-    <a href="/fitness/edit/{{this._id}}">Edit</a>
+    <a href="/fitness/edit/{{this._id}}"class="btn btn-primary">Edit</a>
     <form action="/fitness/delete/{{this._id}}" method="POST">
-      <button type="submit">Delete</button>
+      <button type="submit"class="btn btn-danger">Delete</button>
     </form>
   </li>
 {{/each}}
