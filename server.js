@@ -8,6 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const User = require('./models/User'); 
 const flash = require('connect-flash');
+const GitHubStrategy = require('passport-github').Strategy;
 
 const app = express();
 const port = 3000;
@@ -64,6 +65,27 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: "https://js-betterproductivity.onrender.com/auth/github/callback"
+},
+async function(accessToken, refreshToken, profile, done) {
+  try {
+    let user = await User.findOne({ githubId: profile.id });
+    if (!user) {
+      user = await User.create({ 
+        githubId: profile.id, 
+        username: profile.username // Or any other relevant info
+      });
+    }
+    return done(null, user);
+  } catch (e) {
+    return done(e);
+  }
+}
+));
+
 // Handlebars setup
 const hbs = require('express-handlebars').create({
   extname: '.hbs',
@@ -101,7 +123,15 @@ hbs.handlebars.registerHelper('eq', function(val1, val2) {
   return val1 === val2;
 });
 
+app.get('/auth/github',
+  passport.authenticate('github'));
 
+  app.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 // Routes
 app.get('/', (req, res) => {
