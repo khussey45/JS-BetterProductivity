@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const User = require('./models/User'); 
 const flash = require('connect-flash');
 const GitHubStrategy = require('passport-github').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
 
 const app = express();
 const port = 3000;
@@ -86,6 +88,31 @@ async function(accessToken, refreshToken, profile, done) {
 }
 ));
 
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "https://js-betterproductivity.onrender.com/auth/google/callback"
+},
+async function(accessToken, refreshToken, profile, done) {
+  try {
+    let user = await User.findOne({ googleId: profile.id });
+    if (!user) {
+      user = new User({
+        googleId: profile.id,
+        username: profile.displayName,
+       
+      });
+      await user.save();
+    }
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+}
+));
+
+
+
 // Handlebars setup
 const hbs = require('express-handlebars').create({
   extname: '.hbs',
@@ -132,6 +159,17 @@ app.get('/auth/github',
     // Successful authentication, redirect home.
     res.redirect('/');
   });
+
+  app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+  app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 
 // Routes
 app.get('/', (req, res) => {

@@ -3,9 +3,7 @@
 <head>
     <title>Login</title>
     <style>
-        .github-button {
-            background-color: #000000;
-            color: white;
+        .github-button, .google-button {
             border: none;
             padding: 10px 15px;
             text-align: center;
@@ -15,6 +13,16 @@
             margin: 4px 2px;
             cursor: pointer;
             border-radius: 5px;
+        }
+
+        .github-button {
+            background-color: #000000;
+            color: white;
+        }
+
+        .google-button {
+            background-color: #db4437;
+            color: white;
         }
     </style>
 </head>
@@ -48,6 +56,11 @@
         <!-- GitHub Login Button -->
         <a href="/auth/github" class="github-button">
             Sign in with GitHub
+        </a>
+
+        <!-- Google Login Button -->
+        <a href="/auth/google" class="google-button">
+            Sign in with Google
         </a>
     </div>
 </body>
