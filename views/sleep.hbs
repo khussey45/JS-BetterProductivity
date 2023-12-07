@@ -24,7 +24,8 @@
   <button type="submit">Add Entry</button>
 </form>
 
-<ul>
+  <ul style="list-style-type: none;">
+
   {{#each sleepEntries}}
     <li>
       {{this.date}} - {{this.quality}} - {{this.duration}} hours

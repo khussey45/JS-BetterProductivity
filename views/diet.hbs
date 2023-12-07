@@ -11,7 +11,8 @@
   <button type="submit">Add Food Item</button>
 </form>
 
-<ul>
+  <ul style="list-style-type: none;">
+
   {{#each foodItems}}
   <li>
     {{this.name}} - Carbs: {{this.carbs}}g, Protein: {{this.protein}}g, Calories: {{this.calories}}
@@ -25,3 +26,4 @@
   {{/each}}
 </ul>
 </div>
+
