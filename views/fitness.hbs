@@ -1,8 +1,35 @@
 {{!< main}}
 <div class="text-center">
 <style>
+  .text-center {
+    text-align: center;
+  }
+
   a {
-    color: black; /* Change text color to black */
+    color: black;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .exercise-item {
+    background-color: #f5f5dc; /* Cream color */
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px; /* Rounded corners for the card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  
+  }
+
+  .button-group {
+    display: inline-block;
+  }
+
+  .button-group a, .button-group form {
+    display: inline;
+    margin-right: 10px;
   }
 </style>
 
@@ -16,14 +43,18 @@
   <ul style="list-style-type: none;">
 
 {{#each exercises}}
-  <li>
+  <li class="exercise-item">
     {{this.name}} - {{this.duration}} minutes
-    <a href="/fitness/edit/{{this._id}}"class="btn btn-primary">Edit</a>
-    <form action="/fitness/delete/{{this._id}}" method="POST">
-      <button type="submit"class="btn btn-danger">Delete</button>
-    </form>
+    <div class="button-group">
+      <a href="/fitness/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+      <form action="/fitness/delete/{{this._id}}" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
   </li>
 {{/each}}
+
+
 
 
 </ul>

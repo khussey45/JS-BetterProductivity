@@ -1,4 +1,27 @@
 {{!< main}}
+<style>
+  .text-center {
+    text-align: center;
+  }
+
+  a {
+    color: black;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .food-item {
+    background-color: #f5f5dc; /* Cream color */
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px; /* Rounded corners for the card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+   
+  }
+</style>
 
 
 <div class="text-center">
@@ -14,16 +37,15 @@
   <ul style="list-style-type: none;">
 
   {{#each foodItems}}
-  <li>
+  <li class="food-item">
     {{this.name}} - Carbs: {{this.carbs}}g, Protein: {{this.protein}}g, Calories: {{this.calories}}
-    <!-- Edit button -->
     <a href="/diet/edit/{{this._id}}" class="btn btn-primary">Edit</a>
-    <!-- Delete button -->
     <form action="/diet/delete/{{this._id}}" method="POST" style="display: inline;">
       <button type="submit" class="btn btn-danger">Delete</button>
     </form>
   </li>
-  {{/each}}
+{{/each}}
+
 </ul>
 </div>
 

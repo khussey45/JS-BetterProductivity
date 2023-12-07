@@ -4,11 +4,40 @@
   a {
     color:black;
   }
+ .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 500px;
+    margin: auto;
+  }
+  .button-group {
+    display: inline-block; /* Display the container inline */
+  }
+  .button-group a, .button-group form {
+    display: inline; /* Display the link and form inline */
+    margin-right: 10px; /* Optional: add some space between the buttons */
+  }
+.calendar-item {
+    background-color: #f5f5dc; /* Cream color */
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px; /* Rounded corners for the card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    
+  }
+
 </style>
 <h1>Calendar</h1>
 <form action="/calendar/add" method="POST">
+
+<div class="form-grid">
   <input type="text" name="title" placeholder="Event Title" required>
   <textarea name="description" placeholder="Description"></textarea>
+</div>
+
+
+
   <input type="date" name="startDate" required>
   <input type="time" name="time" required>
   <button type="submit">Add Event</button>
@@ -16,14 +45,19 @@
 
   <ul style="list-style-type: none;">
 
-  {{#each events}}
-  <li>
+{{#each events}}
+  <li class="calendar-item">
     {{this.title}} - {{this.startDate}} at {{this.time}}
-    <a href="/calendar/edit/{{this._id}}"class="btn btn-primary">Edit</a>
-    <form action="/calendar/delete/{{this._id}}" method="POST">
-      <button type="submit"class="btn btn-danger">Delete</button>
-    </form>
+    <div class="button-group">
+      <a href="/calendar/edit/{{this._id}}" class="btn btn-primary">Edit</a>
+      <form action="/calendar/delete/{{this._id}}" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
   </li>
-  {{/each}}
+{{/each}}
+
+
+
 </ul>
 </div>
