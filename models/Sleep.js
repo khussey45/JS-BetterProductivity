@@ -1,3 +1,6 @@
+// This is a Schema map to a MongoDb Collection for Sleep Events
+
+
 const mongoose = require('mongoose');
 
 const sleepSchema = new mongoose.Schema({

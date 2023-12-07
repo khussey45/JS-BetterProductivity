@@ -1,3 +1,5 @@
+// This is a Schema map to a MongoDb Collection for Calendar Events
+
 const mongoose = require('mongoose');
 
 const calendarEventSchema = new mongoose.Schema({

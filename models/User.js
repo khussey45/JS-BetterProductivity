@@ -1,32 +1,36 @@
+// This is a Schema map to a MongoDb Collection for User Events
+// This includes a new registered account login or github or google oauth credentials 
+
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+
   username: {
     type: String,
-    required: function() { return !this.githubId && !this.googleId; }, // Required if no GitHub or Google ID
+    required: function() { return !this.githubId && !this.googleId; }, 
     unique: true
   },
   password: {
     type: String,
-    required: function() { return !this.githubId && !this.googleId; } // Required if no GitHub or Google ID
+    required: function() { return !this.githubId && !this.googleId; } 
   },
   githubId: {
     type: String,
     unique: true,
-    sparse: true // Sparse index, allows multiple null values
+    sparse: true 
   },
-  githubUsername: String, // GitHub username
-  githubProfileUrl: String, // GitHub profile URL
-  avatarUrl: String, // GitHub avatar URL
+  githubUsername: String, 
+  githubProfileUrl: String, 
+  avatarUrl: String, 
 
-  // Adding Google-specific fields
+
   googleId: {
     type: String,
     unique: true,
-    sparse: true // Allows multiple null values
+    sparse: true 
   },
-  googleEmail: String, // Google email
-  googleDisplayName: String, // Google display name
+  googleEmail: String, 
+  googleDisplayName: String, 
 });
 
 const User = mongoose.model('User', UserSchema);

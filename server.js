@@ -1,3 +1,5 @@
+
+// Variables & Require Statements for imported modules
 require('dotenv').config();
 const express = require('express');
 const { engine, create } = require('express-handlebars');
@@ -16,6 +18,7 @@ const app = express();
 const port = 3000;
 
 
+// These are the variables to store model routes for database interactions
 const Todo = require('./models/Todo')
 const FoodItem = require('./models/FoodItem');
 const Exercise = require('./models/Exercise');
@@ -67,6 +70,7 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+// GitHub Auth
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
@@ -78,7 +82,7 @@ async function(accessToken, refreshToken, profile, done) {
     if (!user) {
       user = await User.create({ 
         githubId: profile.id, 
-        username: profile.username // Or any other relevant info
+        username: profile.username 
       });
     }
     return done(null, user);
@@ -88,6 +92,7 @@ async function(accessToken, refreshToken, profile, done) {
 }
 ));
 
+// Google Auth
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -118,14 +123,14 @@ const hbs = require('express-handlebars').create({
   extname: '.hbs',
   defaultLayout: 'main',
   layoutsDir: 'views/layouts/',
-  // other configurations...
+
   runtimeOptions: {
       allowProtoPropertiesByDefault: true,
       allowProtoMethodsByDefault: true,
   },
 });
 
-
+// Config for input selection on hbs views 
 hbs.handlebars.registerHelper('select', function(selected, options) {
   return options.fn(this).replace(new RegExp(' value=\"' + selected + '\"'), '$& selected="selected"');
 });
@@ -138,7 +143,7 @@ hbs.handlebars.registerHelper('formatDate', function(dateString) {
 
 hbs.handlebars.registerHelper('formatDate', function(date) {
   if (!date) return '';
-  return date.toISOString().split('T')[0]; // Format as 'YYYY-MM-DD'
+  return date.toISOString().split('T')[0]; 
 });
 
 app.engine('.hbs', hbs.engine);
@@ -207,6 +212,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Login POST HTTP Request 
 app.get('/login', (req, res) => {
   const successMessage = req.flash('success')[0];
   const errorMessage = req.flash('error')[0];
@@ -216,7 +222,7 @@ app.get('/login', (req, res) => {
   });
 });
 
-
+// Login POST HTTP Request 
 app.post('/login', passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: true
@@ -228,7 +234,7 @@ app.post('/login', passport.authenticate('local', {
 
 
 
-
+// Logout GET HTTP Request 
 app.get('/logout', (req, res) => {
   req.logout(function(err) {
     if (err) { return next(err); }
@@ -307,7 +313,7 @@ app.post('/profile/delete', checkAuthenticated, async (req, res) => {
 
 
 
-// Protected routes
+// HTTP Requests For All Vertical navbar menu items
 app.get('/todo', checkAuthenticated, async (req, res) => {
   const todos = await Todo.find({ user: req.user._id }).lean(); 
   console.log("To-dos:", todos); 

@@ -1,4 +1,5 @@
-// models/Exercise.js
+// This is a Schema map to a MongoDb Collection for Exercise Events
+
 const mongoose = require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({

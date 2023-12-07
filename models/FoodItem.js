@@ -1,4 +1,5 @@
-// models/FoodItem.js
+// This is a Schema map to a MongoDb Collection for Food Item Events
+
 const mongoose = require('mongoose');
 
 const foodItemSchema = new mongoose.Schema({

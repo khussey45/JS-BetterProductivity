@@ -1,3 +1,6 @@
+// This is a Schema map to a MongoDb Collection for ToDo list  Events
+
+
 const mongoose = require('mongoose');
 
 const todoSchema = new mongoose.Schema({
